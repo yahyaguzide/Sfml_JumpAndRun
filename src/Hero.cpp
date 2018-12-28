@@ -7,6 +7,10 @@ Hero::Hero(): GameOBJ(){
 
 }
 
+Hero::Hero(sf::Vector2i vec): GameOBJ(vec){
+
+}
+
 Hero::Hero(Hero& other): GameOBJ(other){
 
 }
@@ -24,5 +28,12 @@ void Hero::HandleInput(sf::Event& event){
     if(nextState != nullptr){
         delete state_;
         state_ = nextState;
+
+        // let the State set its Texture and sprite
+        state_->Enter();
     }
+}
+
+void Hero::update(){
+    state_->Update();
 }

@@ -22,27 +22,33 @@ void GameTexture::CountSprites(){
 
 //###########Setter
 void GameTexture::UpdateTexture(sf::Texture* texture){
-    gameObjTexture = texture;
+    // We dont need to set anything if we point to the same place
+    if(gameObjTexture != texture){
+        gameObjTexture = texture;
+        gameObjSprite.setTexture(*gameObjTexture);
 
-    gameObjSprite.setTexture(*gameObjTexture);
-
-    if(spriteIndex > -1){
         CountSprites();
     }
 }
 
 /// Sets GameTexture's IntRect as rect by Value
 void GameTexture::SetRect(sf::IntRect rect){
-    gameObjIntRect = rect;
+    // We dont need to count again if we dont change height or the width
+    if(gameObjIntRect.height != rect.height || gameObjIntRect.width != rect.width){
+        gameObjIntRect = rect;
 
-    CountSprites();
+        CountSprites();
+    }
 }
 
 /// Sets a new IntRect
 void GameTexture::SetRect(int left, int top, int height, int width){
-    gameObjIntRect = sf::IntRect(left, top, width, height);
+    // We dont need to count again if we dont change height or the width
+    if(gameObjIntRect.height != height || gameObjIntRect.width != width){
+        gameObjIntRect = sf::IntRect(left, top, width, height);
 
-    CountSprites();
+        CountSprites();
+    }
 }
 
 

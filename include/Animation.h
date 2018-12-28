@@ -7,7 +7,7 @@ class Animation : public GameTexture
 {
     public:
         Animation(): GameTexture(){};
-        Animation(sf::Texture* texture): GameTexture(texture){};
+        Animation(sf::Texture* texture, sf::IntRect rect): GameTexture(texture, rect){};
         Animation(const Animation& other): GameTexture(other){};
         virtual ~Animation() = default;
 

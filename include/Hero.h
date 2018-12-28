@@ -12,7 +12,7 @@ class Hero : public GameOBJ
 {
     public:
         Hero();
-        Hero(sf::Vector2i vec): GameOBJ(vec){};
+        Hero(sf::Vector2i vec);
         Hero(Hero& other);
         virtual ~Hero();
 

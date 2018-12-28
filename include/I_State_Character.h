@@ -14,6 +14,7 @@ class I_State_Character : public Animation
         virtual void Enter(Hero& hero) = 0;
         virtual I_State_Character* HandleInput(Hero& hero, sf::Event& event) = 0;
         virtual void Update(Hero& hero) = 0;
+        //NOTE: I forgot what i wanted to do with this
         virtual I_State_Character* Clone() const = 0;
 
     private:

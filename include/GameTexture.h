@@ -4,11 +4,35 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Vector2.hpp>
 
+//TODO: set IntRect a value
+
 class GameTexture
 {
     public:
-        GameTexture(): spriteCount(0), spriteIndex(-1){};
-        GameTexture(sf::Texture* texture): spriteCount(0), spriteIndex(-1), gameObjTexture(texture){};
+
+        //########Constructors are set in the Header
+        // for two lines of code the compiler should not open and read the cpp
+        GameTexture(): spriteCount(0), spriteIndex(0), gameObjIntRect(sf::IntRect(0,0,10,10)){
+
+            gameObjSprite.setTexture(*gameObjTexture);
+            gameObjSprite.setTextureRect(gameObjIntRect);
+        };
+
+        GameTexture(sf::Texture* texture): spriteCount(0), spriteIndex(-1), gameObjTexture(texture){
+            // if Only Texture is given set Intrect as Texture Size;
+            gameObjIntRect = sf::IntRect(0, 0, (*texture).getSize().y, (*texture).getSize().x);
+
+            gameObjSprite.setTexture(*gameObjTexture);
+            gameObjSprite.setTextureRect(gameObjIntRect);
+        };
+
+        GameTexture(sf::Texture* texture, sf::IntRect rect): spriteCount(0), spriteIndex(-1),
+        gameObjTexture(texture), gameObjIntRect(rect){
+
+            gameObjSprite.setTexture(*gameObjTexture);
+            gameObjSprite.setTextureRect(gameObjIntRect);
+        };
+
         GameTexture(const GameTexture& other);
         virtual ~GameTexture() = default;
 
