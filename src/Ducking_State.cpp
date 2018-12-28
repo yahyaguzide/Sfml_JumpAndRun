@@ -12,12 +12,12 @@ Ducking_State::~Ducking_State()
 }
 
 
-void Ducking_State::Enter(Hero& hero){
+void Ducking_State::Enter(){
 //    hero.SetTexture("Ducking")
 }
 
 I_State_Character* Ducking_State::HandleInput(Hero& hero, sf::Event& event){
-    if( event.type == sf::Event::KeyReleased ){
+    if( event.type == sf::Event::KeyReleased){
         return new Standing_State();
     }
     //TODO: Walking, Jumping while Ducking
@@ -26,5 +26,5 @@ I_State_Character* Ducking_State::HandleInput(Hero& hero, sf::Event& event){
     }
 }
 void Ducking_State::Update(Hero& hero){
-
+    NextSprite();
 }

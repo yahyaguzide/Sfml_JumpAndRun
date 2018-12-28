@@ -10,7 +10,7 @@ class Jumping_State : public I_State_Character
         virtual ~Jumping_State();
 
         // Override Virtual Functions
-        void Enter(Hero& hero);
+        void Enter();
         I_State_Character* HandleInput(Hero& hero, sf::Event& event);
         void Update(Hero& hero);
         I_State_Character* Clone() const { return new Jumping_State(*this); };

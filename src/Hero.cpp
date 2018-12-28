@@ -35,5 +35,5 @@ void Hero::HandleInput(sf::Event& event){
 }
 
 void Hero::update(){
-    state_->Update();
+    state_->Update(*this);
 }

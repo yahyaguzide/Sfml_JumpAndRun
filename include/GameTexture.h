@@ -62,31 +62,13 @@ class GameTexture
         /// Count Number of sprites we can have without intersection
         void CountSprites();
 
+        // I could a Smart pointer here but the problem is the following one
+        // lets say we have 10 enemies, the Hero goes and kills all of em
+        // if i have no pointers left the Texture gets deleted and
+        // the enemies which will be created after that have no Texture
+        // to set any more
 
-        //////////////////////////////////////////////////////////////
-        // Texture only holds an Pointer to its Texture so it       //
-        // can Access it without saving the same Texture again,     //
-        // Just the amount of Ground Textures is Huge it would      //
-        // be stupid to save the same Texture again and again       //
-        // By the way here is my first coding comment picture in Cpp//
-        //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                        //
-        // ~~~~~~~ ..................  .....~~~                     //
-        // ~~~~~~..................... ......~~                     //
-        // ~~~~~~....................   .....~~                     //
-        // ~~~~~~....................  ......~~                     //
-        // ~~~~~~~.................    ......~~                     //
-        // ~~~~~~~~...............     ......~~                     //
-        // ~~~~~~~~...............     ......~~                     //
-        // ~~~~~~~~.............    .........~~                     //
-        // ~~~~~~~~               ~~~~~~~~~~~~~~~                   //
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~IBM~~~~~~~~             //
-        // ~~~~~~~~                                   ~~~~~~        //
-        //  ~~~~~~~~~~~~~                                 ~~~~      //
-        //   ~~~~~~~~~~~~~~~~~                             ~~~~~    //
-        //  ~~~~~~~~~~~~~~~~~~~~~~                          ~~~~~   //
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  //
-        /////////////////////////////////////////////////////////////
-
+        // NOTE: think about this part a bit more?!
         /// pointer to the Texture used
         sf::Texture* gameObjTexture;
         sf::Sprite gameObjSprite;

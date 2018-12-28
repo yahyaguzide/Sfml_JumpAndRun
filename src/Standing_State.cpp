@@ -13,7 +13,7 @@ Standing_State::~Standing_State()
 }
 
 
-void Standing_State::Enter(Hero& hero){
+void Standing_State::Enter(){
 //    hero.SetTexture("Standing")
 }
 
@@ -28,5 +28,6 @@ I_State_Character* Standing_State::HandleInput(Hero& hero, sf::Event& event){
 }
 
 void Standing_State::Update(Hero& hero){
-
+    // This would be the Idle Animation
+    NextSprite();
 }

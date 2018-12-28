@@ -8,20 +8,24 @@ Jumping_State::~Jumping_State()
 }
 
 
-void Jumping_State::Enter(Hero& hero){
+void Jumping_State::Enter(){
 //    Hero.setImage("Jumping");
 }
 
 I_State_Character* Jumping_State::HandleInput(Hero& hero, sf::Event& event){
     if(event.key.code == sf::Keyboard::S){
         return new Ducking_State();
-    }else if(hero.GetCoords().y - GetTextureSize().y < 1){
-        return new Standing_State();
-    }else{
-    return nullptr;
+    }
+    //TODO: find a way to determine if character is back at the ground again
+    else{
+        return nullptr;
     }
 }
 
 void Jumping_State::Update(Hero& hero){
-
+    if(hero.GetCoords().y - GetIntRect().height > 1){
+        NextSprite();
+    }else{
+        GoToSprite(3);
+    }
 }
