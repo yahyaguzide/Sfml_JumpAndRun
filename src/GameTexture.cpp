@@ -33,7 +33,7 @@ void GameTexture::UpdateTexture(sf::Texture* texture){
 
 /// Sets GameTexture's IntRect as rect by Value
 void GameTexture::SetRect(sf::IntRect rect){
-    // We dont need to count again if we dont change height or the width
+    // We don't need to count again if we don't change height or the width
     if(gameObjIntRect.height != rect.height || gameObjIntRect.width != rect.width){
         gameObjIntRect = rect;
 

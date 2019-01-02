@@ -12,6 +12,7 @@ void Animation::NextSprite(){
     if(GetIntRect().left < 0 || GetIntRect().top < 0){
             //TODO: Throw Exception Number is negative
     }else{
+        // Check if Texture's size is big enough**
         if((unsigned)(GetIntRect().left + GetIntRect().width) >= GetTextureSize().x){
             if((unsigned)(GetIntRect().top + GetIntRect().height) >= GetTextureSize().y){
                 //TODO: Throw Exception rect over Texture
@@ -20,7 +21,7 @@ void Animation::NextSprite(){
             }
         }else{
             SetRect(GetIntRect().left + GetIntRect().width, GetIntRect().top, GetIntRect().height, GetIntRect().width);
-        }
+        }//   **
     }
 
     // Increment Sprite index

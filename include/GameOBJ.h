@@ -9,6 +9,8 @@ class GameOBJ
         GameOBJ();
         GameOBJ(sf::Vector2i vec);
         GameOBJ(GameOBJ& other);
+        //TODO: the Holy Trinity is broken, overwrite the equal operator
+
         virtual ~GameOBJ(){};
 
         //#############Setter

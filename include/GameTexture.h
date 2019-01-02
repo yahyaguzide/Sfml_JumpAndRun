@@ -11,14 +11,14 @@ class GameTexture
     public:
 
         //########Constructors are set in the Header
-        // for two lines of code the compiler should not open and read the cpp
+        // for two lines of code the compiler should not open and read the cpp file
         GameTexture(): spriteCount(0), spriteIndex(0), gameObjIntRect(sf::IntRect(0,0,10,10)){
 
             gameObjSprite.setTexture(*gameObjTexture);
             gameObjSprite.setTextureRect(gameObjIntRect);
         };
 
-        GameTexture(sf::Texture* texture): spriteCount(0), spriteIndex(-1), gameObjTexture(texture){
+        GameTexture(sf::Texture* texture): spriteCount(0), spriteIndex(0), gameObjTexture(texture){
             // if Only Texture is given set Intrect as Texture Size;
             gameObjIntRect = sf::IntRect(0, 0, (*texture).getSize().y, (*texture).getSize().x);
 
@@ -26,7 +26,7 @@ class GameTexture
             gameObjSprite.setTextureRect(gameObjIntRect);
         };
 
-        GameTexture(sf::Texture* texture, sf::IntRect rect): spriteCount(0), spriteIndex(-1),
+        GameTexture(sf::Texture* texture, sf::IntRect rect): spriteCount(0), spriteIndex(0),
         gameObjTexture(texture), gameObjIntRect(rect){
 
             gameObjSprite.setTexture(*gameObjTexture);
@@ -34,6 +34,20 @@ class GameTexture
         };
 
         GameTexture(const GameTexture& other);
+
+        void operator=(const GameTexture& other){
+            gameObjTexture = other.GetTexture();
+            gameObjIntRect = other.GetIntRect();
+
+            gameObjSprite.setTexture(*gameObjTexture);
+            gameObjSprite.setTextureRect(gameObjIntRect);
+
+            spriteCount = other.spriteCount;
+            spriteIndex = other.spriteIndex;
+        };
+
+        //TODO: the Holy Trinity is broken, overwrite the equal operator
+
         virtual ~GameTexture() = default;
 
         //#############Getter
@@ -62,16 +76,11 @@ class GameTexture
         /// Count Number of sprites we can have without intersection
         void CountSprites();
 
-        // I could a Smart pointer here but the problem is the following one
-        // lets say we have 10 enemies, the Hero goes and kills all of em
-        // if i have no pointers left the Texture gets deleted and
-        // the enemies which will be created after that have no Texture
-        // to set any more
-
-        // NOTE: think about this part a bit more?!
+        // NOTE: The Lvl class is responsible to load and delete Textures, unique_ptr's are a good way to ensure the deletion!!
         /// pointer to the Texture used
         sf::Texture* gameObjTexture;
         sf::Sprite gameObjSprite;
+        /// Rectangle which defines the size of the sprite and location on the Texture
         sf::IntRect gameObjIntRect;
 };
 

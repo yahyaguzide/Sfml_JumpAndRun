@@ -1,10 +1,10 @@
 #ifndef ONGROUND_H
 #define ONGROUND_H
 
+#include <Animation.h>
 #include <I_State_Character.h>
-#include <Physics.h>
 
-class OnGround : public I_State_Character
+class OnGround : public I_State_Character : public Animation
 {
     public:
         OnGround();

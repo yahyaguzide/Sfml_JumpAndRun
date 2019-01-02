@@ -1,9 +1,10 @@
 #ifndef JUMPING_STATE_H
 #define JUMPING_STATE_H
 
+#include <Animation.h>
 #include <I_State_Character.h>
 
-class Jumping_State : public I_State_Character
+class Jumping_State : public I_State_Character : public Animation
 {
     public:
         Jumping_State(){};

@@ -17,23 +17,28 @@ Hero::Hero(Hero& other): GameOBJ(other){
 
 Hero::~Hero(){
     // delete state_ Object
-    delete state_;
+//    delete state_;
 }
 
 //NOTE: A state Stack could be nice here
 void Hero::HandleInput(sf::Event& event){
-    I_State_Character*  nextState = state_->HandleInput(*this, event);
+    I_State_Character*  state_ = StateStack_.back()->HandleInput(*this, event);
 
     // if the State changes delete old state and point to the next State
-    if(nextState != nullptr){
-        delete state_;
-        state_ = nextState;
+    if(state_ != nullptr){
+        if((*state_).type() == kill_State_Character){
+            // last object gets deleted due to the freeing of the unique_ptr
+            StateStack_.pop_back();
+        }else{
+            // add new State on back
+            StateStack_.push_back(std::make_unique(state_));
 
-        // let the State set its Texture and sprite
-        state_->Enter();
+            // let the State set its Texture and sprite
+            StateStack_.back()->Enter();
+        }
     }
 }
 
 void Hero::update(){
-    state_->Update(*this);
+    StateStack_.back()->Update(*this);
 }

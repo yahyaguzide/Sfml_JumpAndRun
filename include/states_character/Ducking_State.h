@@ -4,6 +4,7 @@
 #include <OnGround.h>
 
 class Ducking_State : public OnGround
+
 {
     public:
         Ducking_State();

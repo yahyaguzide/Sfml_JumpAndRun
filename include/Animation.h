@@ -9,6 +9,13 @@ class Animation : public GameTexture
         Animation(): GameTexture(){};
         Animation(sf::Texture* texture, sf::IntRect rect): GameTexture(texture, rect){};
         Animation(const Animation& other): GameTexture(other){};
+        //TODO: the Holy Trinity is broken, overwrite the equal operator
+
+        void operator=(const Animation& other){
+            //NOTE: this compiles but i am unsure if it would work properly, hopfully it calls GameTexture operator
+//            *this = other;
+        };
+
         virtual ~Animation() = default;
 
     protected:
