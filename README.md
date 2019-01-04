@@ -1,7 +1,7 @@
 # sfml_JumpAndRun
 First real attempt for a Full Jump And Run Game
 
-I did not set a License yet but this Code should be under the __BeerLicense__ ;)
+I did not set a License yet but this Code should be under the __BeerWareLicense__ ;)
 
 The reason i started working on this Game is thanks to this Dudes -> [CodingBlocks](https://www.codingblocks.net)
 Go check there Podcast, it's fun 
