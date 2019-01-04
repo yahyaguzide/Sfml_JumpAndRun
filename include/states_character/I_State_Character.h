@@ -4,6 +4,7 @@
 #include <SFML/Window.hpp>
 #include <Hero.h>
 
+//TODO: change void HandleInput to I_State_Character* HandleInput in all Derrivatives
 class I_State_Character
 {
     public:

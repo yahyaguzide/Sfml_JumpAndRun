@@ -1,11 +1,6 @@
 #include "Splash_State.h"
 
-Splash_State::Splash_State()
-{
-    //ctor
-}
 
-Splash_State::~Splash_State()
-{
-    //dtor
+I_State_Game* Splash_State::HandleInput(sf::Event event){
+
 }

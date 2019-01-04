@@ -1,11 +1,6 @@
 #include "Menu_State.h"
 
-Menu_State::Menu_State()
-{
-    //ctor
-}
 
-Menu_State::~Menu_State()
-{
-    //dtor
+I_State_Game* Menu_State::HandleInput(sf::Event event){
+
 }

@@ -1,11 +1,5 @@
 #include "InGameMenu_State.h"
 
-InGameMenu_State::InGameMenu_State()
-{
-    //ctor
-}
+I_State_Game* InGameMenu_State::HandleInput(sf::Event event){
 
-InGameMenu_State::~InGameMenu_State()
-{
-    //dtor
 }

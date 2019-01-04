@@ -19,11 +19,11 @@ void Standing_State::Enter(){
 
 I_State_Character* Standing_State::HandleInput(Hero& hero, sf::Event& event){
     if(event.key.code == sf::Keyboard::W){
-        return new Jumping_State();
+//        return new Jumping_State();
     }else if(event.key.code == sf::Keyboard::S){
-        return new Ducking_State();
+//        return new Ducking_State();
     }else{
-        return nullptr;
+//        return nullptr;
     }
 }
 

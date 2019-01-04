@@ -9,6 +9,8 @@ class Menu_State: public I_State_Game
         Menu_State();
         virtual ~Menu_State();
 
+        I_State_Game* HandleInput(sf::Event event);
+
     protected:
 
     private:

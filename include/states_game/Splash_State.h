@@ -9,6 +9,8 @@ class Splash_State : public I_State_Game
         Splash_State();
         virtual ~Splash_State();
 
+        I_State_Game* HandleInput(sf::Event event);
+
     protected:
 
     private:

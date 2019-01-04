@@ -18,12 +18,10 @@ void Ducking_State::Enter(){
 
 I_State_Character* Ducking_State::HandleInput(Hero& hero, sf::Event& event){
     if( event.type == sf::Event::KeyReleased){
-        return new Standing_State();
-    }
-    //TODO: Walking, Jumping while Ducking
-    else{
+        // Tell Hero that we should return to the previous State
         return nullptr;
     }
+    //TODO: Walking, Jumping while Ducking
 }
 void Ducking_State::Update(Hero& hero){
     NextSprite();

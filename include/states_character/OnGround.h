@@ -4,7 +4,7 @@
 #include <Animation.h>
 #include <I_State_Character.h>
 
-class OnGround : public I_State_Character : public Animation
+class OnGround : public I_State_Character, public Animation
 {
     public:
         OnGround();
@@ -21,7 +21,7 @@ class OnGround : public I_State_Character : public Animation
     protected:
 
     private:
-        Physics* physics;
+//        Physics* physics;
 };
 
 #endif // ONGROUND_H

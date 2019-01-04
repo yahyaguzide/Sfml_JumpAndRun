@@ -6,12 +6,17 @@
 // the State the Game is Currently in   //
 //////////////////////////////////////////
 
+#include <SFML/Window.hpp>
 
 class I_State_Game
 {
     public:
-        I_State_Game();
-        virtual ~I_State_Game();
+        I_State_Game() = default;
+        virtual ~I_State_Game() = default;
+
+        // This method will handle User input's and return if needed the next Object
+        virtual I_State_Game* HandleInput(sf::Event event) = 0;
+
 
     protected:
         //##########Setter

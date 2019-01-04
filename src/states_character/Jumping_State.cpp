@@ -14,12 +14,11 @@ void Jumping_State::Enter(){
 
 I_State_Character* Jumping_State::HandleInput(Hero& hero, sf::Event& event){
     if(event.key.code == sf::Keyboard::S){
-        return new Ducking_State();
+        //TODO: add DuckingWhileJumping State
+//        return new Ducking_State();
     }
+
     //TODO: find a way to determine if character is back at the ground again
-    else{
-        return nullptr;
-    }
 }
 
 void Jumping_State::Update(Hero& hero){

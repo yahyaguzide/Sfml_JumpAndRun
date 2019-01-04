@@ -20,14 +20,25 @@ class Hero : public GameOBJ
 
         virtual ~Hero();
 
+        typedef I_State_Character* raw_state;
+
         void HandleInput(sf::Event& event);
         void update();
 
+//        void PopState(){
+//            delete StateStack_.back();
+//            StateStack_.pop_back();
+//        };
+//
+//        void PushState(raw_state state){
+//            if(state != nullptr){
+//                StateStack_.push_back(state);
+//            }
+//        };
+
     private:
-        // this pointer is not needed any more, everything will be handled by the vector
-//        I_State_Character* state_;
         // vector used as a stack for state's
-        std::vector<std::unique_ptr<I_State_Character>> StateStack_;
+        std::vector<raw_state> StateStack_;
 
 
 };

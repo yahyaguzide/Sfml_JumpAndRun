@@ -6,8 +6,10 @@
 class GameLoop_State: public I_State_Game
 {
     public:
-        GameLoop_State();
-        virtual ~GameLoop_State();
+        GameLoop_State() = default;
+        virtual ~GameLoop_State() = default;
+
+        I_State_Game* HandleInput(sf::Event event);
 
     protected:
 
