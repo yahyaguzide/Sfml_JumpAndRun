@@ -9,20 +9,23 @@ Jumping_State::~Jumping_State()
 
 
 void Jumping_State::Enter(){
-//    Hero.setImage("Jumping");
+    //TODO: Jumping code Enter
 }
 
 I_State_Character* Jumping_State::HandleInput(Hero& hero, sf::Event& event){
     if(event.key.code == sf::Keyboard::S){
-        //TODO: add DuckingWhileJumping State
-//        return new Ducking_State();
+        //TODO: add RushDown State
+//        return new RushDown_State();
     }
 
     //TODO: find a way to determine if character is back at the ground again
+
+    return this;
 }
 
 void Jumping_State::Update(Hero& hero){
-    if(hero.GetCoords().y - GetIntRect().height > 1){
+    //TODO: while hero is in the air freeze sprite
+    if(hero.GetCoords().y - getTextureRect().height > 1){
         NextSprite();
     }else{
         GoToSprite(3);

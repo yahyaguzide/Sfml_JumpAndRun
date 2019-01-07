@@ -13,10 +13,10 @@ class OnGround : public I_State_Character, public Animation
         //TODO: change Hero to Parent Class GameOBJ
 
         // Override Virtual Functions
-        virtual void Enter(Hero& hero){};
-        virtual I_State_Character* HandleInput(Hero& hero, sf::Event& event);
-        virtual void Update(Hero& hero);
-        virtual I_State_Character* Clone() const = 0;
+//        virtual void Enter(Hero& hero){};
+//        virtual I_State_Character* HandleInput(Hero& hero, sf::Event& event);
+//        virtual void Update(Hero& hero) = 0;
+//        virtual I_State_Character* Clone() const = 0;
 
     protected:
 

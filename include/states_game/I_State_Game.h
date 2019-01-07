@@ -14,8 +14,11 @@ class I_State_Game
         I_State_Game() = default;
         virtual ~I_State_Game() = default;
 
+        // Enter sets up the window and draws the menu
+        virtual void Enter(sf::Window& window);
         // This method will handle User input's and return if needed the next Object
-        virtual I_State_Game* HandleInput(sf::Event event) = 0;
+        virtual I_State_Game* HandleInput(sf::Window& window, sf::Event& event) = 0;
+        //TODO: Write a update Method so the Buttons can be interactive
 
 
     protected:

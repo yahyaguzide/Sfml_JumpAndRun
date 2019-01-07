@@ -2,7 +2,6 @@
 #define HERO_H
 
 #include <GameOBJ.h>
-#include <kill_State_Character.h>
 #include <SFML/Window.hpp>
 
 #include <memory>
@@ -24,17 +23,6 @@ class Hero : public GameOBJ
 
         void HandleInput(sf::Event& event);
         void update();
-
-//        void PopState(){
-//            delete StateStack_.back();
-//            StateStack_.pop_back();
-//        };
-//
-//        void PushState(raw_state state){
-//            if(state != nullptr){
-//                StateStack_.push_back(state);
-//            }
-//        };
 
     private:
         // vector used as a stack for state's

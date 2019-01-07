@@ -1,6 +1,7 @@
 #include "Physics.h"
 
 
+
 Physics::Physics()
 {
     forceList.push_back(sf::Vector2i(0,9));
@@ -40,4 +41,8 @@ void Physics::ApplyForce(sf::Vector2i& obj, int mass){
         sumforces.x += (*force).x/mass;
         sumforces.y += (*force).y/mass;
     }
+}
+
+std::vector<GameOBJ*> Physics::Collision(GameOBJ& gameObj){
+    //TODO: Collision detection
 }

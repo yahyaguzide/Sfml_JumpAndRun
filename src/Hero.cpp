@@ -16,8 +16,9 @@ Hero::Hero(Hero& other): GameOBJ(other){
 }
 
 Hero::~Hero(){
-    //TODO: Compiler says No
-//    delete[] StateStack_;
+    for(std::vector<raw_state>::iterator state = StateStack_.begin(); state != StateStack_.end(); state++){
+        delete *state;
+    }
 }
 
 

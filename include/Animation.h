@@ -1,14 +1,26 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
 
-#include <GameTexture.h>
+//////////////////////////////////////////////////////////
+// All Textures require an clean Format                 //
+// if a texture is not properly made which means,       //
+// you need to start at 3 pixel -> Don't Fckng          //
+// Use that shet go and find a proper one which lets    //
+// you create animation's much more easily              //
 
-class Animation : public GameTexture
+#include <SFML/Graphics.hpp>
+
+class Animation : public sf::Sprite
 {
     public:
-        Animation(): GameTexture(){};
-        Animation(sf::Texture* texture, sf::IntRect rect): GameTexture(texture, rect){};
-        Animation(const Animation& other): GameTexture(other){};
+        Animation() = default;
+        Animation(const sf::Texture& texture, sf::IntRect rect): sf::Sprite(texture, rect){};
+        Animation(const Animation& other){
+
+
+            spriteIndex = other.spriteIndex;
+            spriteCount = other.spriteCount;
+        };
         //TODO: the Holy Trinity is broken, overwrite the equal operator
 
         void operator=(const Animation& other){
@@ -27,6 +39,14 @@ class Animation : public GameTexture
         /// Set IntRect to the Sprite at index e.g index*IntRect.x where if index*Rect.x is bigger than Texture Go on next Line else return error
         /// Uses NextSprite()
         void GoToSprite(int index);
+
+    private:
+        // Number of sprites we can have without intersections
+        int spriteCount;
+        int spriteIndex;
+
+        /// Count Number of sprites we can have without intersection
+        void CountSprites();
 };
 
 #endif // ANIMATION_H

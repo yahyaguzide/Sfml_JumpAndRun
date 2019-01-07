@@ -1,33 +1,59 @@
 #include "Animation.h"
 
-//////////////////////////////////////////////////////////
-// All Textures require an clean Format                 //
-// if a texture is not properly made which means,       //
-// you need to start at 3 pixel -> Don't Fckng          //
-// Use that shet go and find a proper one which lets    //
-// you create animation's much more easily              //
+void Animation::CountSprites(){
+    spriteCount = (int)(
+    ((*getTexture()).getSize().x / getTextureRect().width)
+    *
+    ((*getTexture()).getSize().y / getTextureRect().height)
+                        );
+}
+
+
+/////////////////////////////////////////////////////////
+/// \brief changes pos(x, y) to the next sprite which
+/// \brief can be set without intersection
+///
+/////////////////////////////////////////////////////////
 void Animation::NextSprite(){
+
+    //////////////////////////////////////////
     // left and top should not be negative
-    // coords for a Texture start at left top corner and is non negative value
-    if(GetIntRect().left < 0 || GetIntRect().top < 0){
+    // coords for a Texture start at left top
+    // corner and is non negative value
+    if(getTextureRect().left < 0 || getTextureRect().top < 0){
             //TODO: Throw Exception Number is negative
     }else{
-        // Check if Texture's size is big enough**
-        if((unsigned)(GetIntRect().left + GetIntRect().width) >= GetTextureSize().x){
-            if((unsigned)(GetIntRect().top + GetIntRect().height) >= GetTextureSize().y){
-                //TODO: Throw Exception rect over Texture
+
+        ///////////////////////////////////////////////////////////
+        // Check if Texture's size is big enough
+        // Texture size is divided by Rect size
+
+        //  TextureWidth/RectWidth
+        if( (unsigned)(getTextureRect().left + getTextureRect().width) >= (*getTexture()).getSize().x ){
+            // TextureHeight/RectHeight
+            if( (unsigned)(getTextureRect().top + getTextureRect().height) >= (*getTexture()).getSize().y){
+                //TODO: Throw Exception Next sprite not possible
             }else{
-                SetRect(0, GetIntRect().top + GetIntRect().height, GetIntRect().height, GetIntRect().width);
+                setTextureRect(sf::IntRect(0, getTextureRect().top + getTextureRect().height,
+                                            getTextureRect().height, getTextureRect().width));
             }
         }else{
-            SetRect(GetIntRect().left + GetIntRect().width, GetIntRect().top, GetIntRect().height, GetIntRect().width);
-        }//   **
-    }
+            setTextureRect(sf::IntRect(getTextureRect().left + getTextureRect().width,
+                                        getTextureRect().top, getTextureRect().height, getTextureRect().width));
+        }
+    }// endElse
 
     // Increment Sprite index
     spriteIndex = spriteIndex >= spriteCount-1? 0: spriteIndex+1;
 }
 
+
+/////////////////////////////////////////////////////////
+/// \brief changes pos(x, y) to the next sprite at index
+///
+/// \see NextTexture
+///
+/////////////////////////////////////////////////////////
 void Animation::GoToSprite(int index){
     if(index > spriteIndex-1){
         for(int i = spriteIndex; i < index; i += 1){
