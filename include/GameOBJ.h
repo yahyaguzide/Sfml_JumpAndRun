@@ -26,6 +26,8 @@ class GameOBJ
 
 
     private:
+        //TODO: Delete coord use the IntRect Coord instead
+        // Vector of the Game Object
         sf::Vector2i coords;
 };
 

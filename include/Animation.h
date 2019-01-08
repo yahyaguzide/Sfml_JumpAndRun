@@ -14,18 +14,22 @@ class Animation : public sf::Sprite
 {
     public:
         Animation() = default;
-        Animation(const sf::Texture& texture, sf::IntRect rect): sf::Sprite(texture, rect){};
-        Animation(const Animation& other){
-
-
+        Animation(const sf::Texture& texture, sf::IntRect rect): sf::Sprite(texture, rect){
+            CountSprites();
+        };
+        /// Copy C-tor calls C-tor of Sprite to set Texture and IntrRect
+        Animation(const Animation& other): sf::Sprite(other.getTexture, other.getTextureRect){
             spriteIndex = other.spriteIndex;
             spriteCount = other.spriteCount;
         };
         //TODO: the Holy Trinity is broken, overwrite the equal operator
 
         void operator=(const Animation& other){
-            //NOTE: this compiles but i am unsure if it would work properly, hopfully it calls GameTexture operator
-//            *this = other;
+            this.setTexture(other.getTexture());
+            this.setTextureRect(other.getTextureRect());
+
+            spriteIndex = other.spriteIndex;
+            spriteCount = other.spriteCount;
         };
 
         virtual ~Animation() = default;

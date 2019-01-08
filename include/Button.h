@@ -6,7 +6,7 @@
 //TODO: write Button
 //NOTE: i dont want all methods in Sprite, some of them are not needed for a Button
 
-class Button : public sf::Sprite
+class Button : private sf::Sprite
 {
     public:
         Button();
