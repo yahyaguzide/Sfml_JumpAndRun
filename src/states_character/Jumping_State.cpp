@@ -25,9 +25,9 @@ I_State_Character* Jumping_State::HandleInput(Hero& hero, sf::Event& event){
 
 void Jumping_State::Update(Hero& hero){
     //TODO: while hero is in the air freeze sprite
-    if(hero.GetCoords().y - getTextureRect().height > 1){
-        NextSprite();
-    }else{
-        GoToSprite(3);
-    }
+//    if(hero.GetCoords().y - getTextureRect().height > 1){
+//        NextSprite();
+//    }else{
+//        GoToSprite(3);
+//    }
 }

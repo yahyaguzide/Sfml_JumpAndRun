@@ -1,50 +1,18 @@
 #include "Animation.h"
 
-void Animation::CountSprites(){
-    spriteCount = (int)(
-    ((*getTexture()).getSize().x / getTextureRect().width)
-    *
-    ((*getTexture()).getSize().y / getTextureRect().height)
-                        );
-}
-
-
 /////////////////////////////////////////////////////////
 /// \brief changes pos(x, y) to the next sprite which
 /// \brief can be set without intersection
 ///
 /////////////////////////////////////////////////////////
-void Animation::NextSprite(){
+sf::IntRect Animation::NextSprite(sf::Vector2u Size, sf::IntRect Rect){
 
-    //////////////////////////////////////////
-    // left and top should not be negative
-    // coords for a Texture start at left top
-    // corner and is non negative value
-    if(getTextureRect().left < 0 || getTextureRect().top < 0){
-            //TODO: Throw Exception Number is negative
-    }else{
+    NextColumn(Size.x, Rect);
+    if(Rect.left == 0){
+        NextRow(Size.y, Rect);
+    }
 
-        ///////////////////////////////////////////////////////////
-        // Check if Texture's size is big enough
-        // Texture size is divided by Rect size
-
-        //  TextureWidth/RectWidth
-        if( (unsigned)(getTextureRect().left + getTextureRect().width) >= (*getTexture()).getSize().x ){
-            // TextureHeight/RectHeight
-            if( (unsigned)(getTextureRect().top + getTextureRect().height) >= (*getTexture()).getSize().y){
-                //TODO: Throw Exception Next sprite not possible
-            }else{
-                setTextureRect(sf::IntRect(0, getTextureRect().top + getTextureRect().height,
-                                            getTextureRect().height, getTextureRect().width));
-            }
-        }else{
-            setTextureRect(sf::IntRect(getTextureRect().left + getTextureRect().width,
-                                        getTextureRect().top, getTextureRect().height, getTextureRect().width));
-        }
-    }// endElse
-
-    // Increment Sprite index
-    spriteIndex = spriteIndex >= spriteCount-1? 0: spriteIndex+1;
+    return Rect;
 }
 
 
@@ -54,14 +22,79 @@ void Animation::NextSprite(){
 /// \see NextTexture
 ///
 /////////////////////////////////////////////////////////
-void Animation::GoToSprite(int index){
-    if(index > spriteIndex-1){
-        for(int i = spriteIndex; i < index; i += 1){
-            NextSprite();
-        }
+sf::IntRect Animation::GoToSprite(sf::Vector2u Size, sf::IntRect Rect, int index){
+    // Set Rect to the first Sprite so we can GoTo the Sprite at index
+    Rect = sf::IntRect(0, 0, Rect.height, Rect.width);
+
+    for(int i = 0; i < index; i += 1){
+        NextSprite(Size, Rect);
+    }// endFor
+
+    return Rect;
+}
+
+sf::IntRect Animation::NextColumn(unsigned int X, sf::IntRect Rect){
+
+    //////////////////////////////////////////
+    // left and top should not be negative
+    // coords for a Texture start at left top
+    // corner and is non negative value
+    if(Rect.left < 0 || Rect.top < 0){
+            //TODO: throw Exception number not valid
+            //NOTE: Maybe i should not throw a Exception, i should let sprite handle negative Values
     }else{
-        for(int i = spriteIndex; i < spriteCount+index; i += 1){
-            NextSprite();
-        }
-    }
+        if((unsigned int)(Rect.left + Rect.width) > X){
+            // jump back to start
+            Rect.left = 0;
+        }else{
+            // Jump to next Column
+            Rect.left = Rect.left + Rect.width;
+        }// endElse
+    }// endElse
+
+    return Rect;
+}
+
+sf::IntRect Animation::GoToColumn(unsigned int X, sf::IntRect Rect, int index){
+    // Set Rect to the first Sprite so we can GoTo the Sprite at index
+    Rect.left = 0;
+
+    for(int i = 0; i < index; i += 1){
+        NextColumn(X, Rect);
+    }// endFor
+
+    return Rect;
+}
+
+sf::IntRect Animation::NextRow(unsigned int Y, sf::IntRect Rect){
+
+    //////////////////////////////////////////
+    // left and top should not be negative
+    // coords for a Texture start at left top
+    // corner and is non negative value
+    if(Rect.left < 0 || Rect.top < 0){
+            //TODO: throw Exception number not valid
+            //NOTE: Maybe i should not throw a Exception, i should let sprite handle negative Values
+    }else{
+        if((unsigned int)(Rect.top + Rect.height) > Y){
+            // jump back to Start
+            Rect.top = 0;
+        }else{
+            // Jump to next Row
+            Rect.top = Rect.top + Rect.height;
+        }// endElse
+    }// endElse
+
+    return Rect;
+}
+
+sf::IntRect Animation::GoToRow(unsigned int Y, sf::IntRect Rect, int index){
+    // Set Rect to the first Sprite so we can GoTo the Sprite at index
+    Rect.top = 0;
+
+    for(int i = 0; i < index; i += 1){
+        NextRow(Y, Rect);
+    }// endFor
+
+    return Rect;
 }

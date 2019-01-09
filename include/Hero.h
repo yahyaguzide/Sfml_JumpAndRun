@@ -1,15 +1,15 @@
 #ifndef HERO_H
 #define HERO_H
 
-#include <GameOBJ.h>
 #include <SFML/Window.hpp>
 
 #include <memory>
 #include <vector>
+#include <SFML/Graphics.hpp>
 
 class I_State_Character;
 
-class Hero : public GameOBJ
+class Hero : public sf::Sprite
 {
     public:
         Hero();

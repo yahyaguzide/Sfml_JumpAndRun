@@ -1,21 +1,26 @@
 #ifndef BACKGROUNDOBJ_STATIC_H
 #define BACKGROUNDOBJ_STATIC_H
 
-#include <GameOBJ.h>
 #include <SFML/Graphics.hpp>
 
-class BackGroundOBJ_Static : public GameOBJ, sf::Sprite
+class BackGroundOBJ_Static : public sf::Sprite
 {
     public:
-        BackGroundOBJ_Static() : GameOBJ();
-//        BackGroundOBJ_Static()
-        //TODO: write copy C-tor
+        BackGroundOBJ_Static() : sf::Sprite(){};
+        BackGroundOBJ_Static(const sf::Texture texture, sf::IntRect rect): sf::Sprite(texture, rect){};
 
-        virtual ~BackGroundOBJ_Static() = default;
+        virtual ~BackGroundOBJ_Static();
 
-        unsigned int getZ_Index(){
+       //#####Setter
+        unsigned int SetZ_Index(unsigned int Z_Index){
+            z_index = Z_Index;
+        };
+
+        //#####Getter
+        unsigned int GetZ_Index(){
             return z_index;
         };
+
     private:
         unsigned int z_index;
 };

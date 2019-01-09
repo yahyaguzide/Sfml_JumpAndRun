@@ -1,18 +1,9 @@
 #include "Hero.h"
 #include <I_State_Character.h>
 
-Hero::Hero(): GameOBJ(){
+Hero::Hero(){
     //TODO: Starting State
     //NOTE: Starting State could be Standing or Jumping if the Character should Spawn in the Air
-
-}
-
-Hero::Hero(sf::Vector2i vec): GameOBJ(vec){
-
-}
-
-Hero::Hero(Hero& other): GameOBJ(other){
-
 }
 
 Hero::~Hero(){

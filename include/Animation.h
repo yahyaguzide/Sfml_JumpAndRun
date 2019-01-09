@@ -8,49 +8,30 @@
 // Use that shet go and find a proper one which lets    //
 // you create animation's much more easily              //
 
-#include <SFML/Graphics.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics/Rect.hpp>
 
-class Animation : public sf::Sprite
+class Animation
 {
     public:
         Animation() = default;
-        Animation(const sf::Texture& texture, sf::IntRect rect): sf::Sprite(texture, rect){
-            CountSprites();
-        };
-        /// Copy C-tor calls C-tor of Sprite to set Texture and IntrRect
-        Animation(const Animation& other): sf::Sprite(other.getTexture, other.getTextureRect){
-            spriteIndex = other.spriteIndex;
-            spriteCount = other.spriteCount;
-        };
-        //TODO: the Holy Trinity is broken, overwrite the equal operator
-
-        void operator=(const Animation& other){
-            this.setTexture(other.getTexture());
-            this.setTextureRect(other.getTextureRect());
-
-            spriteIndex = other.spriteIndex;
-            spriteCount = other.spriteCount;
-        };
-
         virtual ~Animation() = default;
 
-    protected:
-        /// Set IntRect to Next Sprite if Texture is smaller than IntRect returns Exception
-        /// keep in mind assigning Negative values to IntRect.left or IntRect.top will cause
-        /// an Exception
-        void NextSprite();
+        // Sets Rect to next sprite in the Column where if Rect.left > X, jump back to 0
+        sf::IntRect NextColumn(unsigned int X, sf::IntRect Rect);
+        // uses NextColumn()
+        sf::IntRect GoToColumn(unsigned int X, sf::IntRect Rect, int index);
 
-        /// Set IntRect to the Sprite at index e.g index*IntRect.x where if index*Rect.x is bigger than Texture Go on next Line else return error
-        /// Uses NextSprite()
-        void GoToSprite(int index);
+        // Sets Rect to next sprite in the Row where if Rect.top > Y, jump back to 0
+        sf::IntRect NextRow(unsigned int Y, sf::IntRect Rect);
+        // uses NextRow()
+        sf::IntRect GoToRow(unsigned int Y, sf::IntRect Rect, int index);
 
-    private:
-        // Number of sprites we can have without intersections
-        int spriteCount;
-        int spriteIndex;
+        // Sets Rect to the next Sprite where if Rect.left > Size.x, jump to next Row
+        sf::IntRect NextSprite(sf::Vector2u Size, sf::IntRect Rect);
+        // Uses NextSprite()
+        sf::IntRect GoToSprite(sf::Vector2u Size, sf::IntRect Rect, int index);
 
-        /// Count Number of sprites we can have without intersection
-        void CountSprites();
 };
 
 #endif // ANIMATION_H

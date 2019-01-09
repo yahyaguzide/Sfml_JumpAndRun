@@ -32,5 +32,7 @@ I_State_Character* Standing_State::HandleInput(Hero& hero, sf::Event& event){
 
 void Standing_State::Update(Hero& hero){
     // This would be the Idle Animation
-    NextSprite();
+    if(hero.getTexture() != nullptr){
+        NextSprite((*hero.getTexture()).getSize(), hero.getTextureRect());
+    }
 }

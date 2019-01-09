@@ -31,5 +31,7 @@ I_State_Character* Ducking_State::HandleInput(Hero& hero, sf::Event& event){
     return this;
 }
 void Ducking_State::Update(Hero& hero){
-    NextSprite();
+    if(hero.getTexture() != nullptr){
+        hero.setTextureRect(NextSprite((*hero.getTexture()).getSize(), hero.getTextureRect()));
+    }
 }
