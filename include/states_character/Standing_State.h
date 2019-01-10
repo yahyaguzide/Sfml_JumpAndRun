@@ -1,15 +1,14 @@
 #ifndef STANDING_STATE_H
 #define STANDING_STATE_H
 
-#include <OnGround.h>
+#include <Animation.h>
+#include <I_State_Character.h>
 
-class Standing_State : public OnGround
+class Standing_State : public I_State_Character, public Animation
 {
     public:
         Standing_State();
         virtual ~Standing_State();
-
-        //TODO: change Hero to Parent Class GameOBJ
 
         // Override Virtual Functions
         void Enter();

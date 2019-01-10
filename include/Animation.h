@@ -17,19 +17,49 @@ class Animation
         Animation() = default;
         virtual ~Animation() = default;
 
-        // Sets Rect to next sprite in the Column where if Rect.left > X, jump back to 0
+        /////////////////////////////////////////////////////////
+        /// \brief changes intrect_left Coord to the next sprite at
+        /// \brief Row intrect_left + sprite_width
+        ///
+        /////////////////////////////////////////////////////////
         sf::IntRect NextColumn(unsigned int X, sf::IntRect Rect);
-        // uses NextColumn()
+        /////////////////////////////////////////////////////////
+        /// \brief changes intrect_left Coord to the next sprite at
+        /// \brief Column index
+        ///
+        /// \see NextColumn
+        ///
+        /////////////////////////////////////////////////////////
         sf::IntRect GoToColumn(unsigned int X, sf::IntRect Rect, int index);
 
-        // Sets Rect to next sprite in the Row where if Rect.top > Y, jump back to 0
+        /////////////////////////////////////////////////////////
+        /// \brief changes intrect_top Coord to the next sprite at
+        /// \brief Row intrect_top + sprite_width
+        ///
+        /////////////////////////////////////////////////////////
         sf::IntRect NextRow(unsigned int Y, sf::IntRect Rect);
-        // uses NextRow()
+        /////////////////////////////////////////////////////////
+        /// \brief changes intrect_top Coord to the next sprite at
+        /// \brief Row index
+        ///
+        /// \see NextRow
+        ///
+        /////////////////////////////////////////////////////////
         sf::IntRect GoToRow(unsigned int Y, sf::IntRect Rect, int index);
 
-        // Sets Rect to the next Sprite where if Rect.left > Size.x, jump to next Row
+        /////////////////////////////////////////////////////////
+        /// \brief changes intrect_pos(left, top) to the next
+        /// \brief sprite which can be set without intersection
+        ///
+        /// \see NextRow, NextColumn
+        /////////////////////////////////////////////////////////
         sf::IntRect NextSprite(sf::Vector2u Size, sf::IntRect Rect);
-        // Uses NextSprite()
+        /////////////////////////////////////////////////////////
+        /// \brief changes pos(x, y) to the next sprite at index
+        ///
+        /// \see NextSprite
+        ///
+        /////////////////////////////////////////////////////////
         sf::IntRect GoToSprite(sf::Vector2u Size, sf::IntRect Rect, int index);
 
 };

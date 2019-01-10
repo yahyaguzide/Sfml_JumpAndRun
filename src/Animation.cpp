@@ -1,10 +1,6 @@
 #include "Animation.h"
 
-/////////////////////////////////////////////////////////
-/// \brief changes pos(x, y) to the next sprite which
-/// \brief can be set without intersection
-///
-/////////////////////////////////////////////////////////
+// Sets Rect to the next Sprite where if Rect.left > Size.x, jump to next Row
 sf::IntRect Animation::NextSprite(sf::Vector2u Size, sf::IntRect Rect){
 
     NextColumn(Size.x, Rect);
@@ -16,12 +12,7 @@ sf::IntRect Animation::NextSprite(sf::Vector2u Size, sf::IntRect Rect){
 }
 
 
-/////////////////////////////////////////////////////////
-/// \brief changes pos(x, y) to the next sprite at index
-///
-/// \see NextTexture
-///
-/////////////////////////////////////////////////////////
+// uses NextSprite()
 sf::IntRect Animation::GoToSprite(sf::Vector2u Size, sf::IntRect Rect, int index){
     // Set Rect to the first Sprite so we can GoTo the Sprite at index
     Rect = sf::IntRect(0, 0, Rect.height, Rect.width);
@@ -33,6 +24,7 @@ sf::IntRect Animation::GoToSprite(sf::Vector2u Size, sf::IntRect Rect, int index
     return Rect;
 }
 
+// Sets Rect to next sprite in the Column where if Rect.left > X, jump back to 0
 sf::IntRect Animation::NextColumn(unsigned int X, sf::IntRect Rect){
 
     //////////////////////////////////////////
@@ -55,6 +47,7 @@ sf::IntRect Animation::NextColumn(unsigned int X, sf::IntRect Rect){
     return Rect;
 }
 
+// uses NextColumn()
 sf::IntRect Animation::GoToColumn(unsigned int X, sf::IntRect Rect, int index){
     // Set Rect to the first Sprite so we can GoTo the Sprite at index
     Rect.left = 0;
@@ -66,6 +59,7 @@ sf::IntRect Animation::GoToColumn(unsigned int X, sf::IntRect Rect, int index){
     return Rect;
 }
 
+// Sets Rect to next sprite in the Row where if Rect.top > Y, jump back to 0
 sf::IntRect Animation::NextRow(unsigned int Y, sf::IntRect Rect){
 
     //////////////////////////////////////////
@@ -88,6 +82,7 @@ sf::IntRect Animation::NextRow(unsigned int Y, sf::IntRect Rect){
     return Rect;
 }
 
+// uses NextRow()
 sf::IntRect Animation::GoToRow(unsigned int Y, sf::IntRect Rect, int index){
     // Set Rect to the first Sprite so we can GoTo the Sprite at index
     Rect.top = 0;

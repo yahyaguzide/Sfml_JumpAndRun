@@ -1,16 +1,15 @@
 #ifndef DUCKING_STATE_H
 #define DUCKING_STATE_H
 
-#include <OnGround.h>
+#include <Animation.h>
+#include <I_State_Character.h>
 
-class Ducking_State : public OnGround
+class Ducking_State : public I_State_Character, public Animation
 
 {
     public:
         Ducking_State();
         virtual ~Ducking_State();
-
-        //TODO: change Hero to Parent Class GameOBJ
 
         // Override Virtual Functions
         void Enter();

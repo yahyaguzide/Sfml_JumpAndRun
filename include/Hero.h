@@ -14,17 +14,24 @@ class Hero : public sf::Sprite
     public:
         Hero();
         Hero(sf::Vector2i vec);
-        Hero(Hero& other);
-        //TODO: the Holy Trinity is broken, overwrite the equal operator
+        //NOTE: i dont need to copy a Hero there only can be one
+//        Hero(Hero& other);
 
         virtual ~Hero();
 
-        typedef I_State_Character* raw_state;
-
+        ////////////////////////////////////////
+        /// \brief Handle Upcoming Events
+        /// \brief for Hero,
         void HandleInput(sf::Event& event);
+        ////////////////////////////////////////
+        /// \brief Update Hero,
+        /// \brief sets Sprite to Next,
+        /// \brief plays the Animation
         void update();
 
     private:
+        typedef I_State_Character* raw_state;
+
         // vector used as a stack for state's
         std::vector<raw_state> StateStack_;
 
