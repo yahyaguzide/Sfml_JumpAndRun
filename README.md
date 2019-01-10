@@ -6,7 +6,7 @@ I did not set a License yet but this Code should be under the __BeerWareLicense_
 The reason i started working on this Game is thanks to this Dudes -> [CodingBlocks](https://www.codingblocks.net)
 Go check there Podcast, it's fun 
 
-This Game uses Sfml Shared Libraries
+This Game uses Sfml Shared Libraries,
 to compile this you will need to download the zip File [here](https://www.sfml-dev.org/download.php)
 
 You also need to copy the following files into your Folder 
